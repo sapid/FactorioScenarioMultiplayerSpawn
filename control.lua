@@ -21,6 +21,22 @@
 --      1. Keep all event calls in control.lua (here)
 --      2. Put all config options in config.lua
 --      3. Put mods into their own files where possible (RSO has multiple)
+--      
+--      My important globals are:
+--          global.playerSpawns[player.name] = a position
+--              This is the spawn position of that particular player
+--              
+--          global.playerCooldowns[player.name].setRespawn =  # of ticks
+--              Number of ticks at which the cooldown will be finished
+--          
+--          global.sharedSpawns[ownerName].openAccess = a boolean
+--          global.sharedSpawns[ownerName].position = a position
+--          global.sharedSpawns[ownerName].players={} = an array of player names
+--          
+--          global.uniqueSpawns[ownerName] = a position
+--          
+--          global.unusedSpawns[ownerName] = a position
+--          
 
 
 -- Generic Utility Includes
@@ -241,9 +257,10 @@ script.on_event(defines.events.on_player_left_game, function(event)
         end
     end 
 
-    if ENABLE_SEPARATE_SPAWNS then
-        FindUnusedSpawns(event)
-    end
+    -- if ENABLE_SEPARATE_SPAWNS then
+        -- FindUnusedSpawns(event)
+        -- Disabled until I rewrite this functionality.
+    -- end
 end)
 
 script.on_event(defines.events.on_built_entity, function(event)

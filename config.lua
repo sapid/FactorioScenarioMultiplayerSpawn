@@ -17,8 +17,8 @@ WELCOME_MSG_TITLE = "[INSERT SERVER OWNER MSG HERE!]"
 WELCOME_MSG1 = "Rules: Be polite. Ask before changing other players's stuff. Have fun!"
 WELCOME_MSG2 = "This server is running a custom scenario that changes spawn locations."
 
-OTHER_MSG1 = "Latest updates in this scenario version (0.4.1):"
-OTHER_MSG2 = "Gravestones are back in."
+OTHER_MSG1 = "Latest updates in this scenario version (0.4.2):"
+OTHER_MSG2 = "Removed the unused spawn function since it might be causing desyncs."
 
 WELCOME_MSG3 = "Due to the way this scenario works, it may take some time for the land"
 WELCOME_MSG4 = "around your new spawn area to generate..."

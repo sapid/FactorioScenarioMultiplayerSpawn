@@ -43,57 +43,55 @@ end
 -- Call this if a player leaves the game
 -- Seems to be susceptiable to causing desyncs...
 function FindUnusedSpawns(event)
-    local player = game.players[event.player_index]
-    if (player.online_time < MIN_ONLINE_TIME) then
+    -- local player = game.players[event.player_index]
+    -- if (player.online_time < MIN_ONLINE_TIME) then
 
-        DropGravestoneChests(player)
-
-        -- Clear out global variables for that player
-        if (global.playerSpawns[player.name] ~= nil) then
-            global.playerSpawns[player.name] = nil
-        end
+    --     -- Clear out global variables for that player
+    --     if (global.playerSpawns[player.name] ~= nil) then
+    --         global.playerSpawns[player.name] = nil
+    --     end
       
-        -- Transfer or remove a shared spawn if player is owner
-        if (global.sharedSpawns[player.name] ~= nil) then
+    --     -- Transfer or remove a shared spawn if player is owner
+    --     if (global.sharedSpawns[player.name] ~= nil) then
             
-            local teamMates = global.sharedSpawns[player.name].players
+    --         local teamMates = global.sharedSpawns[player.name].players
 
-            if (#teamMates >= 1) then
-                local newOwnerName = table.remove(teamMates)
-                TransferOwnershipOfSharedSpawn(player.name, newOwnerName)
-            else
-                global.sharedSpawns[player.name] = nil
-            end
-        end
+    --         if (#teamMates >= 1) then
+    --             local newOwnerName = table.remove(teamMates)
+    --             TransferOwnershipOfSharedSpawn(player.name, newOwnerName)
+    --         else
+    --             global.sharedSpawns[player.name] = nil
+    --         end
+    --     end
 
-        -- If a uniqueSpawn was created for the player, mark it as unused.
-        if (global.uniqueSpawns[player.name] ~= nil) then
-            table.insert(global.unusedSpawns, global.uniqueSpawns[player.name])
-            SendBroadcastMsg(player.name .. " base was freed up because they left within 5 minutes of joining.")
-        end
+    --     -- If a uniqueSpawn was created for the player, mark it as unused.
+    --     if (global.uniqueSpawns[player.name] ~= nil) then
+    --         table.insert(global.unusedSpawns, global.uniqueSpawns[player.name])
+    --         SendBroadcastMsg(player.name .. " base was freed up because they left within 5 minutes of joining.")
+    --     end
 
-        -- remove that player's cooldown setting
-        if (global.playerCooldowns[player.name] ~= nil) then
-            global.playerCooldowns[player.name] = nil
-        end
+    --     -- remove that player's cooldown setting
+    --     if (global.playerCooldowns[player.name] ~= nil) then
+    --         global.playerCooldowns[player.name] = nil
+    --     end
 
-        -- Remove from shared spawn player slots (need to search all)
-        for _,sharedSpawn in pairs(global.sharedSpawns) do
-            for key,playerName in pairs(sharedSpawn.players) do
-                if (player.name == playerName) then
-                    sharedSpawn.players[key] = nil;
-                end
-            end
-        end
+    --     -- Remove from shared spawn player slots (need to search all)
+    --     for _,sharedSpawn in pairs(global.sharedSpawns) do
+    --         for key,playerName in pairs(sharedSpawn.players) do
+    --             if (player.name == playerName) then
+    --                 sharedSpawn.players[key] = nil;
+    --             end
+    --         end
+    --     end
 
-        -- Remove a force if this player created it and they are the only one on it
-        if ((#player.force.players <= 1) and (player.force.name ~= MAIN_FORCE)) then
-            game.merge_forces(player.force, MAIN_FORCE)
-        end
+    --     -- Remove a force if this player created it and they are the only one on it
+    --     if ((#player.force.players <= 1) and (player.force.name ~= MAIN_FORCE)) then
+    --         game.merge_forces(player.force, MAIN_FORCE)
+    --     end
 
-        -- Remove the character completely
-        game.remove_offline_players({player})
-    end
+    --     -- Remove the character completely
+    --     game.remove_offline_players({player})
+    -- end
 end
 
 
@@ -187,9 +185,6 @@ function InitSpawnGlobalsAndForces()
     end
     if (global.playerCooldowns == nil) then
         global.playerCooldowns = {}
-    end
-    if (global.tick_counter == nil) then
-        global.tick_counter = 0
     end
 
     game.create_force(MAIN_FORCE)
@@ -287,7 +282,7 @@ end
 -- we'll have to figure out how to change it.
 function ShareVisionBetweenPlayers()
 
-    if (global.tick_counter >= (TICKS_PER_SECOND*5)) then
+    if ((game.tick % (TICKS_PER_SECOND*5)) == 0) then
         
         for _,force in pairs(game.forces) do
             if (force ~= nil) then
@@ -305,9 +300,5 @@ function ShareVisionBetweenPlayers()
                 end
             end
         end
-
-        global.tick_counter = 0
-    else
-        global.tick_counter = global.tick_counter + 1
     end
 end
