@@ -330,6 +330,8 @@ function SpawnOptsGuiClick(event)
         ChangePlayerSpawn(player, player.force.get_spawn_position(GAME_SURFACE_NAME))
         SendBroadcastMsg(player.name .. " joined the main force!")
         ChartArea(player.force, player.position, 4, player.surface)
+		SendPlayerToSpawn(player)
+		
 
    
 

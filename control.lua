@@ -173,8 +173,9 @@ script.on_event(defines.events.on_chunk_generated, function(event)
     if ENABLE_SEPARATE_SPAWNS then
         SeparateSpawnsGenerateChunk(event)
     end
-
-    CreateHoldingPenGenerateChunk(event)
+	if event.surface.name == LOBBY_SURFACE_NAME then
+		CreateHoldingPenGenerateChunk(event)
+	end
 end)
 
 
@@ -220,7 +221,7 @@ script.on_event(defines.events.on_player_created, function(event)
     
     -- Move the player to the game surface immediately.
     -- May change this to Lobby in the future.
-    game.players[event.player_index].teleport(game.forces[MAIN_FORCE].get_spawn_position(GAME_SURFACE_NAME), GAME_SURFACE_NAME)
+    game.players[event.player_index].teleport({1,1}, LOBBY_SURFACE_NAME)
 
     if ENABLE_LONGREACH then
         GivePlayerLongReach(game.players[event.player_index])

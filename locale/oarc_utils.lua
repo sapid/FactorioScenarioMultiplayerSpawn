@@ -16,6 +16,7 @@ TICKS_PER_HOUR = TICKS_PER_MINUTE * 60
 --------------------------------------------------------------------------------
 
 GAME_SURFACE_NAME="Game"
+LOBBY_SURFACE_NAME="Lobby"
 
 --------------------------------------------------------------------------------
 -- GUI Label Styles
@@ -986,7 +987,7 @@ RSO_MODE = 1
 VANILLA_MODE = 2
 
 function CreateLobbySurface()
-    local surface = game.create_surface("Lobby",{width = 1, height = 1})
+    local surface = game.create_surface(LOBBY_SURFACE_NAME,{width = 1, height = 1})
     surface.set_tiles({{name = "out-of-map",position = {1,1}}})
 end              
 
