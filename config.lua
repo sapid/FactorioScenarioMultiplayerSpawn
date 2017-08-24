@@ -28,17 +28,17 @@ OTHER_MSG5 = "If you leave in the first 15 minutes, your base will be deleted!"
 WELCOME_MSG3 = "Due to the way this scenario works, it may take some time for the land"
 WELCOME_MSG4 = "around your new spawn area to generate..."
 WELCOME_MSG5 = "Please wait for 10-20 seconds when you select your first spawn."
-WELCOME_MSG6 = "Contact: SteamID:Oarc | oarcinae@gmail.com"
+WELCOME_MSG6 = "You will only see players on the map if they are on the same force as you."
 
-SPAWN_MSG1 = "Current Spawn Mode: WILDERNESS"
-SPAWN_MSG2 = "In this mode, there is no default spawn. Everyone starts in the wild!"
+SPAWN_MSG1 = "Current Spawn Mode: DEFAULT"
+SPAWN_MSG2 = "In this mode, you may join the main spawn or get a random spawn some distance away."
 SPAWN_MSG3 = "Resources are spread out far apart but are quite rich."
 
 -- These are my specific welcome messages that get used only if I am the user
 -- that creates the game.
-SERVER_OWNER_IS_OARC = true -- This should be false for you, it's just a convenience for me.
-WELCOME_MSG_OARC = "Welcome to Oarc's official server! Join the discord here: discord.gg/TPYxRrS"
-WELCOME_MSG_TITLE_OARC = "Welcome to Oarc's Server - Regrowth!"
+SERVER_OWNER_IS_OARC = false -- This should be false for you, it's just a convenience for me.
+WELCOME_MSG_OARC = ""
+WELCOME_MSG_TITLE_OARC = ""
 
 
 --------------------------------------------------------------------------------
@@ -48,8 +48,8 @@ WELCOME_MSG_TITLE_OARC = "Welcome to Oarc's Server - Regrowth!"
 --------------------------------------------------------------------------------
 
 -- Frontier style rocket silo mode
-FRONTIER_ROCKET_SILO_MODE = true
-
+FRONTIER_ROCKET_SILO_MODE = settings.global["SpawnScatter-prebuild-rocket"].value
+REVEAL_ROCKET_SILO = settings.global["SpawnScatter-reveal-rocket"].value
 -- Separate spawns
 -- This is the core of the mod. Probably not a good idea to disable it.
 ENABLE_SEPARATE_SPAWNS = true
@@ -136,12 +136,12 @@ PLAYER_RESPAWN_START_ITEMS = {
 CHECK_SPAWN_UNGENERATED_CHUNKS_RADIUS = 5
 
 -- Near Distance in chunks
-NEAR_MIN_DIST = 25 --50
-NEAR_MAX_DIST = 100 --125
+NEAR_MIN_DIST = settings.global["SpawnScatter-near-min-distance"].value --50
+NEAR_MAX_DIST = settings.global["SpawnScatter-near-max-distance"].value --125
                    --
 -- Far Distance in chunks
-FAR_MIN_DIST = 200 --50
-FAR_MAX_DIST = 300 --125
+FAR_MIN_DIST = settings.global["SpawnScatter-far-min-distance"].value --50
+FAR_MAX_DIST = settings.global["SpawnScatter-far-max-distance"].value --125
           
 ---------------------------------------
 -- Resource & Spawn Circle Options
@@ -239,7 +239,7 @@ ENABLE_SEPARATE_TEAMS = true
 MAIN_FORCE = "Main Force"
 
 -- Enable if people can spawn at the main base
-ENABLE_DEFAULT_SPAWN = false
+ENABLE_DEFAULT_SPAWN = settings.global["SpawnScatter-enable-default-spawn"].value
 
 -- Enable if people can allow others to join their base
 ENABLE_SHARED_SPAWNS = true

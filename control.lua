@@ -83,8 +83,8 @@ end
 --   time the game starts
 ----------------------------------------
 script.on_init(function(event)
-
-    -- CreateLobbySurface() -- Currently unused, but have plans for future.
+	log("OARC is doing init!")
+    CreateLobbySurface() 
     
     -- Here I create the game surface. I do this so that I don't have to worry
     -- about the game menu settings and I can now generate a map from the command
@@ -111,7 +111,7 @@ script.on_init(function(event)
         SetFixedSiloPosition()
     end
 
-    if FRONTIER_ROCKET_SILO_MODE then
+    if REVEAL_ROCKET_SILO and FRONTIER_ROCKET_SILO_MODE then
         ChartRocketSiloArea(game.forces[MAIN_FORCE], game.surfaces[GAME_SURFACE_NAME])
     end
 
@@ -161,7 +161,7 @@ script.on_event(defines.events.on_chunk_generated, function(event)
         UndecorateOnChunkGenerate(event)
     end
 
-    if ENABLE_RSO then
+    if ENABLE_RSO and not (event.area.left_top.x == 0 and event.area.left_top.y == 0) then
         RSO_ChunkGenerated(event)
     end
 

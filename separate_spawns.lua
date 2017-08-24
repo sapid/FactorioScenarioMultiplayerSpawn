@@ -175,7 +175,7 @@ end
 -- Initializes the globals used to track the special spawn and player
 -- status information
 function InitSpawnGlobalsAndForces()
-    -- Containes an array of all player spawns
+    -- Contains an array of all player spawns
     -- A secondary array tracks whether the character will respawn there.
     if (global.playerSpawns == nil) then
         global.playerSpawns = {}
