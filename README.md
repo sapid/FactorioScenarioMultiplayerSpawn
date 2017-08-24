@@ -1,5 +1,5 @@
-# FactorioScenarioMultiplayerSpawn
-A custom scenario for allowing separate spawn locations in multiplayer. Designed for Co-op and PvE. 
+# Scatter Spawn
+A custom *mod* for allowing separate spawn locations in multiplayer. Designed for Co-op and PvE. 
 
 Only supports 0.15.x at this time!
 
@@ -9,26 +9,19 @@ Only supports 0.15.x at this time!
 
 Download the zip. 
 
-Place it in your Factorio/scenarios/... folder.
-
-It should look something like this (for my windows steam install location):
-
-C:\Users\user\AppData\Roaming\Factorio\scenarios\FactorioScenarioMultiplayerSpawn\control.lua
-
+Windows: Place it in your %appdata%\Factorio\mods folder.
 
 ### STEP 2
 
-Go into config.lua and edit the strings to add your own server messages.
-
-Rename the "FactorioScenarioMultiplayerSpawn" folder to something shorter and more convenient (optional).
-
+Open the game and edit the configuration via Options > Mods
 
 ### STEP 3
 
-Generate a new map, use that save file to host if you want to.
-
+Generate a new map; use that save file to host if you want to.
 
 ## Configuration
+
+Configuration is accessible via Options > Mods.
 
 Look in config.lua for some controls over the different modules.  
 
@@ -36,13 +29,11 @@ Not all configurations have been fully tested so modify at your own risk.
 
 If you want to change the RSO config, look for the rso_config and rso_resource_config files.
 
-
 ## TODO
 
-I need to update this with more details about the implementation and explain some of the configuration options.
+- [ ] Actually move all the configuration to Options > Mods via settings.lua. For now, you may need to edit config.lua as well.
 
-For now, just take a look at the source and it should be easy to understand I hope.
-
+- [ ] Add actual RSO mod support.
 
 ## Credit
 
@@ -64,3 +55,11 @@ While it is an option to disable RSO, I would not recommend doing that. I can't 
 Feel free to submit bugs/fixes/requests/pulls/forks whatever you want.
 
 I do not plan on supporting PvP, but I will help anyone who wants to make it a configurable option.
+
+## Known incompatible mods
+
+- The Ruins Mod
+- The real RSO, probably
+- Angel's
+- Bob's
+- Anything that affects world generation or adds naturally spawning resources
