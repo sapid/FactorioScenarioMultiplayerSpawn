@@ -1,0 +1,11 @@
+{
+  "name": "Spawn Scatter",
+  "version": "0.6.5",
+  "title": "Spawn Scatter",
+  "author": "Oarcinae",
+  "contact": "",
+  "homepage": "https://github.com/Oarcinae/FactorioScenarioMultiplayerSpawn",
+  "description": "Teams can build their own base with separate research. By default the rocket silo is disabled for players and instead is one randomly placed somewhere. Converted to mod by Sapid.",
+  "factorio_version": "0.15",
+  "dependencies": ["base >= 0.15.2"]
+}
